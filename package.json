@@ -1,0 +1,10 @@
+{
+  "name": "nexohogar-ia-workspace",
+  "private": true,
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "install:all": "cd frontend && npm install && cd .. && cd backend && npm install",
+    "dev:backend": "cd backend && npm run dev"
+  }
+}

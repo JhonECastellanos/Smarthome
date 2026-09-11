@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model AdminUser {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PlatformSetting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String
+  label String
+  description String?
+  updatedAt DateTime @updatedAt
+}
+
+model CatalogProduct {
+  id                     String          @id @default(cuid())
+  sku                    String          @unique
+  name                   String
+  category               String
+  basePriceCop           Int
+  baseInstallationPoints Int             @default(1)
+  description            String?
+  isActive               Boolean         @default(true)
+  createdAt              DateTime        @default(now())
+  updatedAt              DateTime        @updatedAt
+}
+
+model QuoteRequest {
+  id               String      @id @default(cuid())
+  contactName      String
+  contactEmail     String?
+  contactPhone     String?
+  items            Json
+  equipmentCost    Int
+  installationCost Int
+  total            Int
+  status           String @default("PENDING")
+  notes            String?
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+}
